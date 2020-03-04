@@ -1,3 +1,4 @@
 ^STAT302package\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
+^codecov\.yml$
