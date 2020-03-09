@@ -6,4 +6,7 @@ cache: packages
   after_success:
     - Rscript -e 'covr::codecov()'
 CODECOV_TOKEN="6f9e789e-5ef8-4d24-bcd3-a98f157df846"
+<<<<<<< HEAD
 bash <(curl -s https://codecov.io/bash)
+=======
+>>>>>>> d575c238924ec2b49a55ce228f0c0f418fa285e2
