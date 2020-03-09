@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' my_lm(formula = dist ~ speed, data = cars)
-#' my_lm(formula = lifeExp ~ gdpPercap, data = my_gapminder)
+#' my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
 #' @export
 my_lm <- function(formula, data){
   # extracts the x matrix
