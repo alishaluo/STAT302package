@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' my_t.test(x = rnorm(10, 0, 1), alternative = "two.sided", mu = 0)
-#' my_t.test(1:100, alternative = "less", mu = 0)
+#' my_t.test(my_gapminder$pop, alternative = "less", mu = 0)
 #' @export
 my_t.test <- function(x, alternative, mu) {
   # gives the alternative hypothesis statements
