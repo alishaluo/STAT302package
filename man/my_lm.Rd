@@ -20,6 +20,6 @@ This function fits a linear model to the given data.
 }
 \examples{
 my_lm(formula = dist ~ speed, data = cars)
-my_lm(formula = lifeExp ~ gdpPercap, data = my_gapminder)
+my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
 }
 \keyword{inference}
