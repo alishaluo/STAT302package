@@ -21,3 +21,4 @@ Imports: magrittr,
   class,
   randomForest, 
   gapminder
+Depends: R (>= 3.2)
