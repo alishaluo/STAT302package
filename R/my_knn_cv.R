@@ -3,14 +3,14 @@
 #' This function uses k-nearest neighbors cross validation to predict the output
 #' class.
 #'
-#' @param train data frame input
-#' @param  cl true class value of the training data
-#' @param k_nn numeric input of the number of neighbors
-#' @param k_cv numeric input of the number of folds
+#' @param train data frame input.
+#' @param  cl true class value of the training data.
+#' @param k_nn numeric input of the number of neighbors.
+#' @param k_cv numeric input of the number of folds.
 #' @keywords prediction
 #'
 #' @return A list with the predicted class, and a numeric output of the cross
-#'   validation error
+#'   validation error.
 #'
 #' @examples
 #' my_knn_cv(train = [, -5], cl = iris$Species, k_nn = 1, k_cv = 5)

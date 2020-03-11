@@ -7,9 +7,9 @@
 my_lm(formula, data)
 }
 \arguments{
-\item{formula}{general function input from a set of data}
+\item{formula}{general function input from a set of data.}
 
-\item{data}{data input}
+\item{data}{data input.}
 }
 \value{
 A table with the calculated estimates, standard error, t-values, and
