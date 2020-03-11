@@ -15,6 +15,7 @@
 #' @examples
 #' my_knn_cv(train = [, -5], cl = iris$Species, k_nn = 1, k_cv = 5)
 #' my_knn_cv(train = [, -1], cl = my_gapminder$country, k_nn = 5, k_cv = 5)
+#' @import class magrittr
 #' @export
 my_knn_cv <- function(train, cl, k_nn, k_cv) {
   # randomly selects folds
