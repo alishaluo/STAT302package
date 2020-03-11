@@ -19,8 +19,9 @@
 #' @import class gapminder magrittr stats
 #' @export
 my_knn_cv <- function(train, cl, k_nn, k_cv) {
+  n <- nrow(train)
   # randomly selects folds
-  folds <- sample(rep(1:k_cv, length = nrow(train)))
+  folds <- sample(rep(1:k_cv, length = n))
   # split data
   data <- data.frame(train, "split" = folds)
   for(i in 1:k_cv) {
