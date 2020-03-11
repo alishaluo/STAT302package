@@ -10,8 +10,8 @@
 #'    p values
 #'
 #' @examples
-#' my_lm(formula = dist ~ speed, data = cars)
 #' my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
+#'
 #' @import class magrittr stats
 #' @export
 my_lm <- function(formula, data){

@@ -13,9 +13,9 @@
 #'   validation error.
 #'
 #' @examples
-#' my_knn_cv(train = iris[, -5], cl = iris$Species, k_nn = 1, k_cv = 5)
 #' my_knn_cv(train = my_gapminder[, -1], cl = my_gapminder$country, k_nn = 5,
 #'           k_cv = 5)
+#'
 #' @import class gapminder magrittr stats
 #' @export
 my_knn_cv <- function(train, cl, k_nn, k_cv) {

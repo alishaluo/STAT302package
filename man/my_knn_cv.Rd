@@ -24,8 +24,8 @@ This function uses k-nearest neighbors cross validation to predict the output
 class.
 }
 \examples{
-my_knn_cv(train = iris[, -5], cl = iris$Species, k_nn = 1, k_cv = 5)
 my_knn_cv(train = my_gapminder[, -1], cl = my_gapminder$country, k_nn = 5,
           k_cv = 5)
+
 }
 \keyword{prediction}

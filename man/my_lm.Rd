@@ -19,7 +19,7 @@ A table with the calculated estimates, standard error, t-values, and
 This function fits a linear model to the given data.
 }
 \examples{
-my_lm(formula = dist ~ speed, data = cars)
 my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
+
 }
 \keyword{inference}
