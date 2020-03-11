@@ -15,10 +15,12 @@ Suggests:
     testthat (>= 2.1.0),
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    magrittR
 VignetteBuilder: knitr
 Imports: magrittr,
   class,
   randomForest, 
-  gapminder
+  gapminder, 
+  stats
 Depends: R (>= 3.2)

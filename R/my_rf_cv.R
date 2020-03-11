@@ -11,7 +11,7 @@
 #' @examples
 #' my_rf_cv(k = 5)
 #' my_rf_cv(k = 1)
-#' @import randomForest class magrittr gapminder
+#' @import randomForest class magrittr gapminder stats
 #' @export
 #my_gapminder <- my_gapminder
 my_rf_cv <- function(k) {
