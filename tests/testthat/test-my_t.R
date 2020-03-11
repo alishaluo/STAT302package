@@ -1,5 +1,10 @@
 # within my_t.test.R
 test_that("t-test works", {
   expect_is(my_t.test(rnorm(10, 0, 1), alternative = "less", mu = 0), "list")
-  expect_is(my_t.test(rnorm(10, 0, 1), alternative = "less", mu = 0)$p_value, "numeric")
+  expect_is(my_t.test(rnorm(10, 0, 1), alternative = "less", mu = 0)$p_value,
+            "numeric")
+})
+test_that("incorrect input throws error", {
+  expect_error(my_t.test("a string", alternative = 5, mu = "a string"))
+  expect_error(my_t.test(rnorm(10, 0, 1), alternative = 5, mu = "string"))
 })
