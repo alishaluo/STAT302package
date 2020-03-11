@@ -20,7 +20,7 @@
 #' @export
 my_knn_cv <- function(train, cl, k_nn, k_cv) {
   # randomly selects folds
-  folds <- sample(rep(1:k_cv, length = n))
+  folds <- sample(rep(1:k_cv, length = k_cv))
   # split data
   data <- data.frame(train, "split" = folds)
   for(i in 1:k_cv) {

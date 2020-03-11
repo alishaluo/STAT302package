@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(STAT302package)
+library(ggplot2)
 ```
 
 ## Installation
@@ -25,4 +26,16 @@ To download the STAT302package package, use the code below
 # install.packages("devtools")
 devtools::install_github("alishaluo/STAT302package")
 library(STAT302package)
+```
+
+# my_t.test function
+```{r}
+my_t_test(my_gapminder$pop, alternative = "two.sided", mu = 60)
+my_t_test(my_gapminder$pop, alternative = "less", mu = 60)
+my_t_test(my_gapminder$pop, alternative = "greater", mu = 0)
+```
+
+# my_lm function
+```{r}
+my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
 ```

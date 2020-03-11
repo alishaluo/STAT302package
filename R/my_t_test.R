@@ -17,7 +17,7 @@
 #' @export
 sd <- NA
 pt <- NA
-my_t.test <- function(x, alternative, mu) {
+my_t_test <- function(x, alternative, mu) {
   # gives the alternative hypothesis statements
   if(alternative == "two.sided") {
     cat("true difference in means is not equal to", mu)

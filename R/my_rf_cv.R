@@ -15,7 +15,7 @@
 #' @export
 my_rf_cv <- function(k) {
   # selects folds randomly and splits data
-  folds <- sample(rep(1:k, length = n))
+  folds <- sample(rep(1:k, length = k))
   data <- data.frame(my_gapminder, "split" = folds)
   for(i in 1:k) {
     # X_i, training data

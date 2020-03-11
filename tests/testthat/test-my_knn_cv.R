@@ -1,4 +1,4 @@
-# within my_knn_cv.R
+# within test-my_knn_cv.R
 test_that("my_knn_cv works", {
   expect_is(my_knn_cv(train = iris[, -5], cl = iris$Species, k_nn = 1,
                       k_cv = 5), "list")
