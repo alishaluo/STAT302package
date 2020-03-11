@@ -2,8 +2,8 @@
 #'
 #' This function fits a linear model to the given data.
 #'
-#' @param formula general function input from a set of data
-#' @param data data input
+#' @param formula general function input from a set of data.
+#' @param data data input.
 #' @keywords inference
 #'
 #' @return A table with the calculated estimates, standard error, t-values, and
