@@ -44,7 +44,7 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
   # calculates average of the misclassication rate
   cv_err <- mean(miss_rate)
   # stores results into a list
-  result <- list("class" = class, "CV Error" = cv_err)
+  result <- list("class" = class, "CV_error" = cv_err)
   # returns list
   return(result)
 }
