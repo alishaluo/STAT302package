@@ -7,10 +7,10 @@
 my_rf_cv(k)
 }
 \arguments{
-\item{k}{numeric input of the number of folds}
+\item{k}{numeric input of the number of folds.}
 }
 \value{
-numeric output of the CV MSE
+numeric output of the CV MSE.
 }
 \description{
 This function uses Random Forest Cross Validation to predict the output of

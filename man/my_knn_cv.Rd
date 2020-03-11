@@ -7,24 +7,25 @@
 my_knn_cv(train, cl, k_nn, k_cv)
 }
 \arguments{
-\item{train}{data frame input}
+\item{train}{data frame input.}
 
-\item{cl}{true class value of the training data}
+\item{cl}{true class value of the training data.}
 
-\item{k_nn}{numeric input of the number of neighbors}
+\item{k_nn}{numeric input of the number of neighbors.}
 
-\item{k_cv}{numeric input of the number of folds}
+\item{k_cv}{numeric input of the number of folds.}
 }
 \value{
 A list with the predicted class, and a numeric output of the cross
-  validation error
+  validation error.
 }
 \description{
 This function uses k-nearest neighbors cross validation to predict the output
 class.
 }
 \examples{
-my_knn_cv(train = [, -5], cl = iris$Species, k_nn = 1, k_cv = 5)
-my_knn_cv(train = [, -1], cl = my_gapminder$country, k_nn = 5, k_cv = 5)
+my_knn_cv(train = iris[, -5], cl = iris$Species, k_nn = 1, k_cv = 5)
+my_knn_cv(train = my_gapminder[, -1], cl = my_gapminder$country, k_nn = 5,
+          k_cv = 5)
 }
 \keyword{prediction}

@@ -11,7 +11,7 @@
 #' @examples
 #' my_rf_cv(k = 5)
 #' my_rf_cv(k = 1)
-#' @import randomForest
+#' @import randomForest class magrittr gapminder
 #' @export
 my_rf_cv <- function(k) {
   # selects folds randomly and splits data
