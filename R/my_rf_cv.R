@@ -13,9 +13,12 @@
 #' my_rf_cv(k = 1)
 #' @import randomForest class magrittr gapminder
 #' @export
+#my_gapminder <- my_gapminder
 my_rf_cv <- function(k) {
+  n <- nrow(my_gapminder)
   # selects folds randomly and splits data
-  folds <- sample(rep(1:k, length = k))
+  folds <- sample(rep(1:k, length = n))
+  print(folds)
   data <- data.frame(my_gapminder, "split" = folds)
   for(i in 1:k) {
     # X_i, training data
