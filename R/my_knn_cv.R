@@ -19,7 +19,7 @@
 #' @import class gapminder magrittr stats dplyr
 #' @export
 my_knn_cv <- function(train, cl, k_nn, k_cv) {
-  n <- nrow(train)
+  n <- nrow(my_gapminder)
   # randomly selects folds
   folds <- sample(rep(1:k_cv, length = n))
   # split data
@@ -33,6 +33,7 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
     cl_train <- cl[folds != i]
     # Y_i^*
     cl_test <- cl[folds == i]
+    print(length(cl_test))
     # remove split columns
     data_train$split <- NULL
     data_test$split <- NULL
