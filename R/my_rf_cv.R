@@ -11,7 +11,7 @@
 #' @examples
 #' my_rf_cv(k = 5)
 #' my_rf_cv(k = 1)
-#' @import randomForest class magrittr gapminder stats
+#' @import randomForest class magrittr gapminder stats dplyr
 #' @export
 #my_gapminder <- my_gapminder
 my_rf_cv <- function(k) {
@@ -21,9 +21,9 @@ my_rf_cv <- function(k) {
   data <- data.frame(my_gapminder, "split" = folds)
   for(i in 1:k) {
     # X_i, training data
-    data_train <- data %>% filter(split != i)
+    data_train <- data %>% dplyr::filter(split != i)
     # X_i^*, testing data
-    data_test <- data %>% filter(split == i)
+    data_test <- data %>% dplyr::filter(split == i)
     # predicts the outcomes of Sepal.length
     my_model <- randomForest(lifeExp ~ gdpPercap, data = data_train, ntree = 100)
     # predicts Sepal.length of the testing data

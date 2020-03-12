@@ -16,7 +16,7 @@
 #' my_knn_cv(train = my_gapminder[, -1], cl = my_gapminder$country, k_nn = 5,
 #'           k_cv = 5)
 #'
-#' @import class gapminder magrittr stats
+#' @import class gapminder magrittr stats dplyr
 #' @export
 my_knn_cv <- function(train, cl, k_nn, k_cv) {
   n <- nrow(train)
@@ -26,9 +26,9 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
   data <- data.frame(train, "split" = folds)
   for(i in 1:k_cv) {
     # X_i
-    data_train <- data %>% filter(split != i)
+    data_train <- data %>% dplyr::filter(split != i)
     # X_i^*
-    data_test <- data %>% filter(split == i)
+    data_test <- data %>% dplyr::filter(split == i)
     # Y_i
     cl_train <- cl[folds != i]
     # Y_i^*

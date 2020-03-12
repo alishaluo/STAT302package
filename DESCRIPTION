@@ -21,5 +21,6 @@ Imports: magrittr,
   class,
   randomForest, 
   gapminder, 
-  stats
+  stats, 
+  dplyr
 Depends: R (>= 3.2)
