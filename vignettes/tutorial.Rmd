@@ -34,8 +34,9 @@ my_t_test(my_gapminder$pop, alternative = "less", mu = 60)
 my_t_test(my_gapminder$pop, alternative = "greater", mu = 0)
 ```
 
+Assuming that the null hypothesis ($\mu$ = 60) is true, 
 
- my_lm function
+# my_lm function
 ```{r}
 my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
 ```

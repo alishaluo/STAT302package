@@ -13,7 +13,7 @@
 #' my_rf_cv(k = 1)
 #' @import randomForest class magrittr gapminder stats dplyr
 #' @export
-#my_gapminder <- my_gapminder
+#my_gapminder <- data(my_gapminder)
 my_rf_cv <- function(k) {
   n <- nrow(my_gapminder)
   # selects folds randomly and splits data
@@ -26,10 +26,11 @@ my_rf_cv <- function(k) {
     data_test <- data %>% dplyr::filter(split == i)
     # predicts the outcomes of Sepal.length
     my_model <- randomForest(lifeExp ~ gdpPercap, data = data_train, ntree = 100)
+    print(length(my_model))
     # predicts Sepal.length of the testing data
-    my_pred <- predict(my_model, data_test[, -1])
+    my_pred <- predict(my_model, data_test[, -4])
     # calculates the average squared difference
-    mse <- (my_pred - data[, 1])^2
+    mse <- (my_pred - data[, 4])^2
     sum_mse <- rep(mse)
   }
   return(mean(sum_mse))
