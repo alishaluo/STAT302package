@@ -13,7 +13,7 @@
 #'   validation error.
 #'
 #' @examples
-#' my_knn_cv(train = my_gapminder[, -1], cl = my_gapminder$country, k_nn = 5,
+#' my_knn_cv(train = my_gapminder[, c(4, 6)], cl = my_gapminder$country, k_nn = 5,
 #'           k_cv = 5)
 #'
 #' @import class gapminder magrittr stats dplyr
@@ -33,17 +33,16 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
     cl_train <- cl[folds != i]
     # Y_i^*
     cl_test <- cl[folds == i]
-    print(length(cl_test))
     # remove split columns
     data_train$split <- NULL
     data_test$split <- NULL
     # predicts output class
     knn_output <- knn(train = data_train, test = data_test, cl = cl_train,
                       k = k_nn)
-    # stores the proportion observations classified incorrectly
   }
   # stores output for full data
   class <- knn(train = train, cl = cl, test = train, k = k_nn)
+  # stores the proportion observations classified incorrectly
   miss_rate <- (knn_output != class)
   # calculates average of the misclassication rate
   cv_err <- mean(miss_rate)
