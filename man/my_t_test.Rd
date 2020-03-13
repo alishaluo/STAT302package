@@ -21,8 +21,8 @@ A list with the alternative hypothesis, numeric test value, and
 This function performs a one-sample t-test.
 }
 \examples{
-my_t.test(x = rnorm(10, 0, 1), alternative = "two.sided", mu = 0)
-my_t.test(my_gapminder$pop, alternative = "less", mu = 0)
+my_t_test(x = rnorm(10, 0, 1), alternative = "two.sided", mu = 0)
+my_t_test(my_gapminder$pop, alternative = "less", mu = 0)
 
 }
 \keyword{prediction}
