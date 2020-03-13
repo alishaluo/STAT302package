@@ -29,7 +29,6 @@ my_lm <- function(formula, data){
   sigma <-sum(((y - (x %*% intercept))^2)/ df_lm)
   # calcualtes the matrix needed for the standard error
   vari <- sigma * (solve(t(x) %*% x))
-  print(is.na(vari))
   # calculates standard error
   se <- diag(sqrt(vari))
   # calculates t-value
