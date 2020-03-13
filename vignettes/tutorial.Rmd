@@ -17,14 +17,15 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(STAT302package)
+library(ggplot2)
 ```
 
 ## Installation
 To download the STAT302package package, use the code below
 ```{r, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("alishaluo/STAT302package")
-library(STAT302package)
+# devtools::install_github("alishaluo/STAT302package")
+# library(STAT302package)
 ```
 
 # my_t.test function
@@ -38,5 +39,12 @@ Assuming that the null hypothesis ($\mu$ = 60) is true,
 
 # my_lm function
 ```{r}
-my_lm <- my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
+test <- my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
+my_coef <- test[, 1]
+my_matrix <- model.matrix(lifeExp ~ gdpPercap + continent, data = my_gapminder)
+y_hat <- my_matrix %*% as.matrix(my_coef)
+
+my_data <- data.frame("Actual" = my_gapminder$lifeExp, "Fitted" = y_hat, 
+                      "Continent" = my_gapminder$continent)
+ggplot(my_data, aes(x = Actual, y = Fitted))
 ```
