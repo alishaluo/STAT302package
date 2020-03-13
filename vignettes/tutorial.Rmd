@@ -38,5 +38,5 @@ Assuming that the null hypothesis ($\mu$ = 60) is true,
 
 # my_lm function
 ```{r}
-my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
+my_lm <- my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
 ```
