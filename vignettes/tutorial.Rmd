@@ -51,3 +51,7 @@ ggplot(my_data, aes(x = Actual, y = Fitted, color = Continent)) +
   geom_point() + 
   theme_bw(base_size = 20)
 ```
+
+# my_knn_cv function
+```{r}
+```

@@ -15,13 +15,13 @@ Suggests:
     testthat (>= 2.1.0),
     covr,
     knitr,
-    rmarkdown
+    rmarkdown, 
+    ggplot2
 VignetteBuilder: knitr
 Imports: magrittr,
   class,
   randomForest, 
   gapminder, 
   stats, 
-  dplyr, 
-  ggplot2
+  dplyr
 Depends: R (>= 3.2)
