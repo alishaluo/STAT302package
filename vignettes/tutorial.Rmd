@@ -46,5 +46,7 @@ y_hat <- my_matrix %*% as.matrix(my_coef)
 
 my_data <- data.frame("Actual" = my_gapminder$lifeExp, "Fitted" = y_hat, 
                       "Continent" = my_gapminder$continent)
-ggplot(my_data, aes(x = Actual, y = Fitted))
+ggplot(my_data, aes(x = Actual, y = Fitted, color = Continent)) + 
+  geom_point() + 
+  theme_bw(base_size = 20)
 ```
