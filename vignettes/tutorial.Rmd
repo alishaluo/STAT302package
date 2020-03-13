@@ -13,12 +13,13 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(ggplot2)
 ```
 
 ```{r setup}
 library(STAT302package)
-library(ggplot2)
 ```
+
 
 ## Installation
 To download the STAT302package package, use the code below
