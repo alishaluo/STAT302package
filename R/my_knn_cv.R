@@ -25,8 +25,7 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
   folds <- sample(rep(1:k_cv, length = n))
   # split data
   data <- data.frame(train, "split" = folds)
-  for(i in 1: k_nn) {
-  for(i in 1:k_cv) {
+  for(i in k_cv) {
     # X_i
     data_train <- data %>% dplyr::filter(split != i)
     # X_i^*
@@ -48,7 +47,6 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
   miss_rate <- (knn_output != class)
   # calculates average of the misclassication rate
   cv_err <- mean(miss_rate)
-  }
   # stores results into a list
   result <- list("class" = class, "CV_error" = cv_err, "train_err" = miss_rate)
   # returns list

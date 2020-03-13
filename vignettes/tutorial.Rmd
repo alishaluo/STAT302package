@@ -54,4 +54,7 @@ ggplot(my_data, aes(x = Actual, y = Fitted, color = Continent)) +
 
 # my_knn_cv function
 ```{r}
+for(i in 1:10) {
+  my_knn_cv(train = my_gapminder[, c(4, 6)], cl = my_gapminder$continent, k_nn = i, k_cv = 5)
+}
 ```
