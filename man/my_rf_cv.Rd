@@ -18,6 +18,7 @@ a target variable and calculate MSE.
 }
 \examples{
 my_rf_cv(k = 5)
-my_rf_cv(k = 1)
+my_rf_cv(k = 2)
+
 }
-\keyword{predction}
+\keyword{prediction}

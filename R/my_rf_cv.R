@@ -4,17 +4,19 @@
 #' a target variable and calculate MSE.
 #'
 #' @param k numeric input of the number of folds.
-#' @keywords predction
+#' @keywords prediction
 #'
 #' @return numeric output of the CV MSE.
 #'
 #' @examples
 #' my_rf_cv(k = 5)
-#' my_rf_cv(k = 1)
+#' my_rf_cv(k = 2)
+#'
 #' @import randomForest class magrittr gapminder stats dplyr
 #' @export
 #my_gapminder <- data(my_gapminder)
 my_rf_cv <- function(k) {
+  my_gapminder <- my_gapminder
   n <- nrow(my_gapminder)
   # selects folds randomly and splits data
   folds <- sample(rep(1:k, length = n))
@@ -26,7 +28,6 @@ my_rf_cv <- function(k) {
     data_test <- data %>% dplyr::filter(split == i)
     # predicts the outcomes of Sepal.length
     my_model <- randomForest(lifeExp ~ gdpPercap, data = data_train, ntree = 100)
-    print(length(my_model))
     # predicts Sepal.length of the testing data
     my_pred <- predict(my_model, data_test[, -4])
     # calculates the average squared difference
@@ -35,3 +36,4 @@ my_rf_cv <- function(k) {
   }
   return(mean(sum_mse))
 }
+

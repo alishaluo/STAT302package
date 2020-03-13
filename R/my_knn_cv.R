@@ -19,6 +19,7 @@
 #' @import class gapminder magrittr stats dplyr
 #' @export
 my_knn_cv <- function(train, cl, k_nn, k_cv) {
+  my_gapminder <- my_gapminder
   n <- nrow(my_gapminder)
   # randomly selects folds
   folds <- sample(rep(1:k_cv, length = n))
