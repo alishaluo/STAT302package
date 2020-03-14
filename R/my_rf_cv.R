@@ -22,19 +22,22 @@ my_rf_cv <- function(k) {
   # selects folds randomly and splits data
   folds <- sample(rep(1:k, length = n))
   data <- data.frame(my_gapminder, "split" = folds)
+  mse <- rep(NA, k)
   for(i in 1:k) {
     # X_i, training data
     data_train <- data %>% dplyr::filter(split != i)
     # X_i^*, testing data
     data_test <- data %>% dplyr::filter(split == i)
+    # remove split columns
+    data_train$split <- NULL
+    data_test$split <- NULL
     # predicts the outcomes of Sepal.length
     my_model <- randomForest(lifeExp ~ gdpPercap, data = data_train, ntree = 100)
     # predicts Sepal.length of the testing data
     my_pred <- predict(my_model, data_test[, -4])
     # calculates the average squared difference
-    mse <- (my_pred - data[, 4])^2
-    sum_mse <- rep(mse)
+    mse[i] <- mean((my_pred - data_test[, 4])^2)
   }
-  return(mean(sum_mse))
+  return(mean(mse))
 }
 
