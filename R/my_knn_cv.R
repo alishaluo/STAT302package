@@ -46,12 +46,10 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
    }
   # stores output for full data
   class <- knn(train = train, cl = cl, test = train, k = k_nn)
-  # # stores the proportion observations classified incorrectly
-  # miss_rate <- (knn_output != class)
   # calculates average of the misclassication rate
   cv_err <- mean(miss_rate)
   # stores results into a list
-  result <- list("class" = class, "CV_error" = cv_err, "Miss_rate" = miss_rate)
+  result <- list("CV_error" = cv_err, "Miss_rate" = miss_rate)
   # returns list
   return(result)
 }
