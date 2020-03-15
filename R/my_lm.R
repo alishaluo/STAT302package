@@ -30,7 +30,7 @@ my_lm <- function(formula, data){
   # calcualtes the matrix needed for the standard error
   vari <- sigma * (solve(t(x) %*% x))
   # calculates standard error
-  se <- diag(sqrt(vari))
+  se <- sqrt(diag(vari))
   # calculates t-value
   t_val <- c(intercept / se)
   # caluclates p-values, specifically for two-sided t-test
