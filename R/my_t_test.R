@@ -19,16 +19,13 @@
 my_t_test <- function(x, alternative, mu) {
   # gives the alternative hypothesis statements
   if(alternative == "two.sided") {
-    cat("true difference in means is not equal to", mu)
-    print(" ")
+    alt <- c("true difference in means is not equal to", mu)
   }else if (alternative == "less") {
-    cat("true difference in means is less than", mu)
-    print(" ")
+    alt <- c("true difference in means is less than", mu)
   }else if (alternative == "greater") {
-    cat("true difference in means is greater than", mu)
-    print(" ")
+    alt <- c("true difference in means is greater than", mu)
   } else {
-    print("Error: invalid argument")
+    alt <- c("Error: invalid argument")
   }
   # calculates standard error
   se.t_test <- sd(x)/(sqrt(length(x)))
@@ -48,6 +45,7 @@ my_t_test <- function(x, alternative, mu) {
     "test statistic" = test_stat,
     "df" = df,
     "alternative" = alternative,
+    "alternative hypothesis" = alt,
     "p_value" = p_val
   )
   # returns the resulting list

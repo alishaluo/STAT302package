@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(ggplot2)
+library(reshape)
 ```
 
 ```{r setup}
@@ -31,16 +32,25 @@ To download the STAT302package package, use the code below
 
 # my_t.test function
 ```{r}
-my_t_test(my_gapminder$pop, alternative = "two.sided", mu = 60)
-my_t_test(my_gapminder$pop, alternative = "less", mu = 60)
-my_t_test(my_gapminder$pop, alternative = "greater", mu = 0)
+two_side_test <- my_t_test(my_gapminder$lifeExp, alternative = "two.sided", mu = 60)
+two_side_test
+less_test <- my_t_test(my_gapminder$lifeExp, alternative = "less", mu = 60)
+greater_test <- my_t_test(my_gapminder$lifeExp, alternative = "greater", mu = 60)
+as.data.frame(cbind(two_side_test$p_value, less_test$p_value,
+                    greater_test$p_value))
 ```
 
-Assuming that the null hypothesis ($\mu$ = 60) is true, 
+If the life expectancy is an average of 60 years, we cannot conclude that 
+9.32% of samples will not equal 60, thus failing to reject the null hypothesis. 
+If the life expectancy is an average of 60 years, only 4.66% of samples will
+be less than 60. 
+If the life expectancy is an average of 60 years, only 4.66% of samples will
+be greater than 60. 
 
 # my_lm function
 ```{r}
 test <- my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
+test
 my_coef <- test[, 1]
 my_matrix <- model.matrix(lifeExp ~ gdpPercap + continent, data = my_gapminder)
 y_hat <- my_matrix %*% as.matrix(my_coef)
@@ -49,12 +59,60 @@ my_data <- data.frame("Actual" = my_gapminder$lifeExp, "Fitted" = y_hat,
                       "Continent" = my_gapminder$continent)
 ggplot(my_data, aes(x = Actual, y = Fitted, color = Continent)) + 
   geom_point() + 
-  theme_bw(base_size = 20)
+  theme_bw(base_size = 15) +
+  geom_abline(slope = 1, intercept = 0, col = "black") +
+  labs(x = "Fitted values", y = "Actual values", title = "Actual vs. Fitted") +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
+
+The null hypothesis would be that there is no effect gdpPercap has on life
+expectancy. Since the p-value is so low, assuming that gdp per capita does not
+have an effect on life expectancy, we can say that 8.55e-71 percent of samples 
+will observe gdp per capita having an effect on life expectancy, thus rejecting
+the null hypothesis. 
+
+By looking at the graph, we can see that Europe and Oceania were predicted 
+pretty well, while for a continent like Africa, we predicted the life 
+expectancy to be somewhere from 35 to 75, but the actual life expectancy ranged
+closer to 50. 
 
 # my_knn_cv function
 ```{r}
+set.seed(123)
+cv_err <- rep(NA, 10)
+miss_err <- matrix(NA)
 for(i in 1:10) {
-  my_knn_cv(train = my_gapminder[, c(4, 6)], cl = my_gapminder$continent, k_nn = i, k_cv = 5)
+  my_output <- my_knn_cv(train = my_gapminder[, c(4, 6)], 
+                         cl = my_gapminder$continent, k_nn = i, k_cv = 5)
+  print(my_output)
 }
 ```
+
+```{r, warning= FALSE}
+set.seed(321)
+cv_mse_2 <- rep(NA, 30)
+cv_mse_5 <- rep(NA, 30)
+cv_mse_10 <- rep(NA, 30)
+for(i in 1:30) {
+  cv_mse_2[i] <- my_rf_cv(k = 2)
+  cv_mse_5[i] <- my_rf_cv(k = 5)
+  cv_mse_10[i] <- my_rf_cv(k = 10)
+}
+cv_mse <- as.data.frame(cbind(cv_mse_2, cv_mse_5, cv_mse_10))
+cv_mse_melt <- melt(cv_mse)
+ggplot(cv_mse_melt, aes(factor(variable), value)) +
+  geom_boxplot() +
+  labs(x = "Number of Folds", y = "CV Error") +
+  scale_x_discrete(labels = c("2", "5", "10"))
+avg <- rep(NA, 3)
+std_dev <- rep(NA, 3)
+for(i in 1:length(cv_mse)) {
+  avg[i] <- mean(cv_mse[, i])
+  std_dev[i] <- sd(cv_mse[, i])
+}
+as.data.frame(cbind(avg, std_dev))
+```
+
+In both the graph and table, we can see that as the number of folds increases, 
+the cross validation error increase, we also see the standard deviation
+decrease. 

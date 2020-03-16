@@ -8,6 +8,6 @@ test_that("my_knn_cv works", {
 test_that("incorrect input throws error", {
   expect_error(my_knn_cv(train = my_gapminder[, "a string"], cl = my_gapminder$lifeExp,
                          k_nn = 1, k_cv = 5))
-  expect_error(my_knn_cv(train = my_gapminder[, 3], cl = my_gapminder$continent,
+  expect_error(my_knn_cv(train = my_gapminder[, 3], cl = my_gapminder$country,
                                    k_nn = "a string", k_cv = "a string"))
 })
