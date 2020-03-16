@@ -3,7 +3,8 @@
   [![Codecov test coverage](https://codecov.io/gh/alishaluo/STAT302package/branch/master/graph/badge.svg)](https://codecov.io/gh/alishaluo/STAT302package?branch=master)
   <!-- badges: end -->
   
-Installation
+## Installation
+
 To download the STAT302package package, use the code below:
 
 ```{r}
@@ -11,7 +12,8 @@ install.packages("devtools")
 devtools::install_github("alishaluo/STAT302package")
 library(STAT302package)
 ```
-Use
+## Use
+
 The vignette demonstrates example usage of all main functions.
 ```{r}
 # install.packages("devtools")

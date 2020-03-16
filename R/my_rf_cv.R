@@ -15,7 +15,6 @@
 #' @import class magrittr gapminder stats dplyr
 #' @importFrom randomForest randomForest
 #' @export
-#my_gapminder <- data(my_gapminder)
 my_rf_cv <- function(k) {
   my_gapminder <- my_gapminder
   n <- nrow(my_gapminder)
@@ -31,7 +30,7 @@ my_rf_cv <- function(k) {
     # remove split columns
     data_train$split <- NULL
     data_test$split <- NULL
-    # predicts the outcomes of Sepal.length
+    # predicts the outcomes of lifeExp
     my_model <- randomForest(lifeExp ~ gdpPercap, data = data_train, ntree = 100)
     # predicts Sepal.length of the testing data
     my_pred <- predict(my_model, data_test[, -4])
