@@ -79,13 +79,19 @@ closer to 50.
 # my_knn_cv function
 ```{r}
 set.seed(123)
-cv_err <- rep(NA, 10)
-miss_err <- matrix(NA)
+my_output_err <- rep(NA, 10)
+my_train_err <- rep(NA, 10)
+  
 for(i in 1:10) {
   my_output <- my_knn_cv(train = my_gapminder[, c(4, 6)], 
                          cl = my_gapminder$continent, k_nn = i, k_cv = 5)
-  print(my_output)
+  train_err <- mean(my_output$class != my_gapminder$continent)
+  my_output_err[i] <- (my_output$CV_error)
+  my_train_err[i] <- train_err
 }
+as.data.frame(cbind(my_output_err, my_train_err))
+
+
 ```
 
 ```{r, warning= FALSE}
