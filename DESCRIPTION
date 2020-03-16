@@ -16,7 +16,8 @@ Suggests:
     covr,
     knitr,
     rmarkdown, 
-    ggplot2
+    ggplot2, 
+    reshape
 VignetteBuilder: knitr
 Imports: magrittr,
   class,
