@@ -26,6 +26,7 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
   # split data
   data <- data.frame(train, "split" = folds)
   miss_rate <- rep(NA, k_cv)
+  train_err <- rep(NA, k_cv)
   for(i in 1:k_cv) {
     # X_i
     data_train <- data %>% dplyr::filter(split != i)
@@ -38,7 +39,7 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
     # remove split columns
     data_train$split <- NULL
     data_test$split <- NULL
-    # predicts output class
+    # predicts output class, Y_hat^*
     knn_output <- knn(train = data_train, test = data_test, cl = cl_train,
                       k = k_nn)
     # stores the proportion observations classified incorrectly
@@ -46,10 +47,11 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
    }
   # stores output for full data
   class <- knn(train = train, cl = cl, test = train, k = k_nn)
+  # train_err <- mean(cl_train != class)
   # calculates average of the misclassication rate
   cv_err <- mean(miss_rate)
   # stores results into a list
-  result <- list("CV_error" = cv_err, "Miss_rate" = miss_rate)
+  result <- list("CV_error" = cv_err, "Miss_rate" = train_err)
   # returns list
   return(result)
 }
