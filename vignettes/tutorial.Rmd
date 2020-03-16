@@ -22,12 +22,22 @@ library(STAT302package)
 ```
 
 
-## Installation
+# Introduction
+This package contains all functions developed in the course STAT 302. Each 
+function demonstrates an inference/prediction method and works with the 
+gapminder data. 
+## Installation and Use
 To download the STAT302package package, use the code below
 ```{r, eval = FALSE}
 # install.packages("devtools")
-# devtools::install_github("alishaluo/STAT302package")
-# library(STAT302package)
+devtools::install_github("alishaluo/STAT302package")
+library(STAT302package)
+devtools::install_github("bryandmartin/corncob", build_vignette = TRUE, build_opts = c())
+library(corncob)
+# Use this to view the vignette in the corncob HTML help
+help(package = "corncob", help_type = "html")
+# Use this to view the vignette as an isolated HTML file
+utils::browseVignettes(package = "corncob")
 ```
 
 # my_t.test function
@@ -90,8 +100,6 @@ for(i in 1:10) {
   my_train_err[i] <- train_err
 }
 as.data.frame(cbind(my_output_err, my_train_err))
-
-
 ```
 
 ```{r, warning= FALSE}
