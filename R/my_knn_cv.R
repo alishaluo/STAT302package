@@ -13,8 +13,8 @@
 #'   validation error.
 #'
 #' @examples
-#' my_knn_cv(train = my_gapminder[, c(4, 6)], cl = my_gapminder$continent, k_nn = 5,
-#'           k_cv = 5)
+#' my_knn_cv(train = my_gapminder[, c(4, 6)], cl = my_gapminder$continent,
+#'           k_nn = 5, k_cv = 5)
 #'
 #' @import class gapminder magrittr stats dplyr
 #' @export

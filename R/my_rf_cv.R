@@ -31,7 +31,8 @@ my_rf_cv <- function(k) {
     data_train$split <- NULL
     data_test$split <- NULL
     # predicts the outcomes of lifeExp
-    my_model <- randomForest(lifeExp ~ gdpPercap, data = data_train, ntree = 100)
+    my_model <- randomForest(lifeExp ~ gdpPercap, data = data_train,
+                             ntree = 100)
     # predicts Sepal.length of the testing data
     my_pred <- predict(my_model, data_test[, -4])
     # calculates the average squared difference
