@@ -29,7 +29,7 @@ gapminder data.
 
 ## Installation and Use
 To download the STAT302package package, use the code below
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo = FALSE}
 # install.packages("devtools")
 devtools::install_github("alishaluo/STAT302package")
 library(STAT302package)
