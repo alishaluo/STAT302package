@@ -13,12 +13,12 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(ggplot2)
-library(reshape)
 ```
 
-```{r setup}
+```{r setup, include = FALSE, echo = FALSE}
 library(STAT302package)
+library(ggplot2)
+library(reshape)
 ```
 
 
@@ -26,13 +26,15 @@ library(STAT302package)
 This package contains all functions developed in the course STAT 302. Each 
 function demonstrates an inference/prediction method and works with the 
 gapminder data. 
+
 ## Installation and Use
 To download the STAT302package package, use the code below
 ```{r, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("alishaluo/STAT302package")
 library(STAT302package)
-devtools::install_github("alishaluo/STAT302package", build_vignette = TRUE, build_opts = c())
+devtools::install_github("alishaluo/STAT302package", build_vignette = TRUE, 
+                         build_opts = c())
 library(STAT302package)
 # Use this to view the vignette in the corncob HTML help
 help(package = "STAT302package", help_type = "html")
@@ -40,14 +42,17 @@ help(package = "STAT302package", help_type = "html")
 utils::browseVignettes(package = "STAT302package")
 ```
 
-# my_t.test function
+# my_t_test function
 ```{r}
-two_side_test <- my_t_test(my_gapminder$lifeExp, alternative = "two.sided", mu = 60)
-two_side_test
+two_side_test <- my_t_test(my_gapminder$lifeExp, alternative = "two.sided",
+                           mu = 60)
 less_test <- my_t_test(my_gapminder$lifeExp, alternative = "less", mu = 60)
-greater_test <- my_t_test(my_gapminder$lifeExp, alternative = "greater", mu = 60)
-as.data.frame(cbind(two_side_test$p_value, less_test$p_value,
+greater_test <- my_t_test(my_gapminder$lifeExp, alternative = "greater", 
+                          mu = 60)
+test_result <- as.data.frame(cbind(two_side_test$p_value, less_test$p_value,
                     greater_test$p_value))
+names(test_result) <- c("two.sided", "less", "greater")
+test_result
 ```
 
 If the life expectancy is an average of 60 years, we cannot conclude that 
@@ -69,10 +74,10 @@ my_data <- data.frame("Actual" = my_gapminder$lifeExp, "Fitted" = y_hat,
                       "Continent" = my_gapminder$continent)
 ggplot(my_data, aes(x = Actual, y = Fitted, color = Continent)) + 
   geom_point() + 
-  theme_bw(base_size = 15) +
+  theme_bw(base_size = 2) +
   geom_abline(slope = 1, intercept = 0, col = "black") +
   labs(x = "Fitted values", y = "Actual values", title = "Actual vs. Fitted") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(text= element_text(size = 10))
 ```
 
 The null hypothesis would be that there is no effect gdpPercap has on life
@@ -95,14 +100,26 @@ my_train_err <- rep(NA, 10)
 for(i in 1:10) {
   my_output <- my_knn_cv(train = my_gapminder[, c(4, 6)], 
                          cl = my_gapminder$continent, k_nn = i, k_cv = 5)
-  train_err <- mean(my_output$class != my_gapminder$continent)
+  my_train_err[i] <- mean(my_output$class != my_gapminder$continent)
   my_output_err[i] <- (my_output$CV_error)
-  my_train_err[i] <- train_err
 }
-as.data.frame(cbind(my_output_err, my_train_err))
+my_result <- as.data.frame(cbind(my_output_err, my_train_err))
+names(my_result) <- c("CV Error", "Training Error")
+my_result
 ```
 
-```{r, warning= FALSE}
+Based on what we see in the table, the CV error is decreasing as the number of 
+neighbors increases, and so we would choose 10 for knn, however, looking at the
+training error, the exact opposite happens. The training error increases as the
+number of neighbors increases, thus we would choose knn = 1. This happens
+because of overfitting, where the cv error gets more accurate to the data that 
+you have predicted, but it is too precise to the predicted data, and any newly
+added data, would cause a lot of error. Whereas, the training error shows that 
+with less number of neighbors, the predicted data may be more incorrect, but may
+more accurately predict any new data points we add in. 
+
+# my_rf_cv function
+```{r, warning = FALSE}
 set.seed(321)
 cv_mse_2 <- rep(NA, 30)
 cv_mse_5 <- rep(NA, 30)
@@ -115,7 +132,7 @@ for(i in 1:30) {
 cv_mse <- as.data.frame(cbind(cv_mse_2, cv_mse_5, cv_mse_10))
 cv_mse_melt <- melt(cv_mse)
 ggplot(cv_mse_melt, aes(factor(variable), value)) +
-  geom_boxplot() +
+  geom_boxplot(fill = "lightblue") +
   labs(x = "Number of Folds", y = "CV Error") +
   scale_x_discrete(labels = c("2", "5", "10"))
 avg <- rep(NA, 3)
@@ -129,4 +146,7 @@ as.data.frame(cbind(avg, std_dev))
 
 In both the graph and table, we can see that as the number of folds increases, 
 the cross validation error increase, we also see the standard deviation
-decrease. 
+decrease, and with even more folds, we would see that the standard deviation 
+would start to increase again. This again, would have to do with overfitting 
+the data, when we predict the data with more number of folds, the folds become 
+more highly correlated. 
